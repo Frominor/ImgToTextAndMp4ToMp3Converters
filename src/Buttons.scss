@@ -1,0 +1,16 @@
+input {
+  height: 20px;
+  width: 20px;
+}
+
+.Btns {
+  label {
+    color: white;
+    font-size: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  display: flex;
+  align-items: center;
+}
