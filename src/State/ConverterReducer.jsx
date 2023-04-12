@@ -15,7 +15,6 @@ const GET_ERROR2 = "GET_ERROR2";
 export const ConverterReducer = (state = InitialState, action) => {
   switch (action.type) {
     case CHANGE_LANGUAGE:
-      console.log(action.payload);
       return { ...state, Lang: action.payload };
     case ADD_IMG_TO_CONVERT:
       return { ...state, Files: action.payload };

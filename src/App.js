@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetTextFromImgAction } from "./State/AsyncActions/GetTextFromImgAction";
 import MP4 from "./Components/mp4Tomp3/mp4Tomp3";
 import ImgToText from "./Components/ImgToText/ImgToText";
+import { Getmp3 } from "./State/AsyncActions/Getmp3";
 function App() {
   const dispatch = useDispatch();
   const State = useSelector((state) => state.ConverterReducer);
@@ -14,7 +15,6 @@ function App() {
       dispatch(GetTextFromImgAction(State.Files, State.Lang));
     }
   }
-  console.log(Value);
   function youtube_parser(url) {
     let regExp =
       /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -23,27 +23,7 @@ function App() {
   }
   const handleSubmit = () => {
     const youtubeID = youtube_parser(Value);
-    const options = {
-      method: "GET",
-      url: "https://youtube-mp36.p.rapidapi.com/dl",
-      params: { id: youtubeID },
-      headers: {
-        "X-RapidAPI-Key": "e165504438msh46a24a5fa46f509p161b9djsn666436760003",
-        "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
-      },
-    };
-    axios
-      .request(options)
-      .then((res) => {
-        if (res.data.duration < 7200) {
-          dispatch({ type: "GET_URL_RESULT", payload: res.data.link });
-        } else {
-          dispatch({ type: "GET_ERROR2", payload: "Ошибка" });
-        }
-      })
-      .catch((error) => {
-        dispatch({ type: "GET_ERROR2", payload: "Ошибка" });
-      });
+    dispatch(Getmp3(youtubeID));
   };
   return (
     <div className="App">

@@ -6,13 +6,9 @@ export default function MP4({ Value, SetValue, Get }) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(12);
-    console.log(data);
-  };
+  const onSubmit = (data) => {};
   const State = useSelector((state) => state.ConverterReducer);
   return (
     <form className="Mp4" onSubmit={handleSubmit(onSubmit)}>
@@ -25,7 +21,6 @@ export default function MP4({ Value, SetValue, Get }) {
         <input
           {...register("form_input", {
             required: "Ошибка,введитие корректную ссылку",
-            message: "error",
             pattern: {
               value:
                 "(?:.+?)?(?:/v/|watch/|?v=|&v=|youtu.be/|/v=|^youtu.be/)([a-zA-Z0-9_-]{11})+",

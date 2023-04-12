@@ -8,7 +8,6 @@ export const GetTextFromImgAction = (Files, Lang) => {
         dispatch({ type: "FINALLY_TEXT_FROM_IMG", payload: text });
       })
       .catch((error) => {
-        console.log(error);
         dispatch({
           type: "GET_ERROR",
           payload: "CORS политика не позволяет загружать img прямо из браузера",
